@@ -9,11 +9,18 @@ export class PrecisaG2Component implements OnInit {
     @Input()
     notaG1: number = null;
 
+    resultado = null;
+
     constructor() { }
 
   ngOnInit() {
-    const precisaG2 = (18 - this.notaG1) / 2;
-    alert(precisaG2);
+      if (typeof this.notaG1 === 'number') {
+          const precisaG2 = (18 - this.notaG1) / 2;
+          this.resultado = ' Você precisa tirar ' + precisaG2 + ' na G2';
+      }
+      else{
+          alert('Caro desenvolvedor, insira apenas números no componente!');
+      }
   }
 
 }

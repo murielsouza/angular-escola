@@ -7,14 +7,27 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ControleFaltasComponent implements OnInit {
     @Input()
-    totalAulas: number = null;
-    @Input()
     totalFaltas: number = null;
+    resultado = null;
 
     constructor() { }
 
     ngOnInit() {
-        const horas = this.totalFaltas * 3 + 11;
+        if (typeof this.totalFaltas === 'number') {
+            const horas = this.totalFaltas * 3 + 11;
+            if(horas <= 17){
+                this.resultado = 'Você já faltou ' + horas + 'h, (cuidado, o limite é de 17h/semestre)';
+            }
+            else if(horas> 17 && horas <= 28){
+                this.resultado = 'Você faltou +17 horas, faça as WEB Atividade. Horas já faltadas (' + horas + 'h)';
+            }
+            else{
+                this.resultado = 'Você reprovou por faltas, FALTE MENOS no próximo semestre! Boa Sorte 🍀';
+            }
+         }
+         else{
+            alert('Caro desenvolvedor, insira apenas números no componente!');
+        }
     }
 
 }
